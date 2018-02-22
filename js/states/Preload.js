@@ -26,7 +26,7 @@ Magic.PreloadState = {
         this.load.image('fairyBlackout', 'assets/images/fairyBlackout.png');
         
         this.load.image('fairyHome', 'assets/images/fairyHome.png');
-        this.load.image('script', 'assets/images/script.png');
+        this.load.image('spell', 'assets/images/script.png');
         this.load.image('pixieDoor', 'assets/images/pixieDoor.png');
         this.load.image('magicCarpet', 'assets/images/magicCarpet.png');
         this.load.image('unicorn', 'assets/images/unicorn.png');
