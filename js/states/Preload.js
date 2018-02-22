@@ -7,7 +7,31 @@ Magic.PreloadState = {
         var preloadProgress = this.add.sprite((this.world.width - 540) * 0.5, (this.world.height + 170) * 0.5, 'loading-progress');
         this.load.setPreloadSprite(preloadProgress);
 
-        this.load.image('imageId', 'assets/images/imageName.png');
+        //Witch Version
+        this.load.image('witchBackground', 'assets/images/witchBackground.png');        
+        this.load.image('witch', 'assets/images/witch.png'); 
+        this.load.image('witchBlackout', 'assets/images/witchBlackout.png');
+        
+        this.load.image('witchHome', 'assets/images/witchHome.png');
+        this.load.image('magicBook', 'assets/images/magicBook.png');
+        this.load.image('witchHat', 'assets/images/witchHat.png');
+        this.load.image('cauldron', 'assets/images/cauldron.png');
+        this.load.image('blackCat', 'assets/images/blackCat.png');
+        
+        this.load.spritesheet('potions', 'assets/images/potionsSprite.png', 75, 100, 9);
+        
+        //Fairy Verison
+        this.load.image('fairyBackground', 'assets/images/fairyBackground.png');      
+        this.load.image('fairy', 'assets/images/fairy.png');  
+        this.load.image('fairyBlackout', 'assets/images/fairyBlackout.png');
+        
+        this.load.image('fairyHome', 'assets/images/fairyHome.png');
+        this.load.image('script', 'assets/images/script.png');
+        this.load.image('pixieDoor', 'assets/images/pixieDoor.png');
+        this.load.image('magicCarpet', 'assets/images/magicCarpet.png');
+        this.load.image('unicorn', 'assets/images/unicorn.png');
+        
+        this.load.spritesheet('wand', 'assets/images/wandSprite.png', 159, 100, 9);
     },
     create: function ()
     {
