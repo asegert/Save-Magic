@@ -7,6 +7,7 @@ Magic.PreloadState = {
         var preloadProgress = this.add.sprite((this.world.width - 540) * 0.5, (this.world.height + 170) * 0.5, 'loading-progress');
         this.load.setPreloadSprite(preloadProgress);
 
+        this.load.image('chooseScreen', 'assets/images/chooseScreen.png');
         //Witch Version
         this.load.image('witchBackground', 'assets/images/witchBackground.png');        
         this.load.image('witch', 'assets/images/witch.png'); 
