@@ -1,0 +1,34 @@
+{
+    "Witch": {
+        "Background": "witchBackground",
+        "Blackout": "witchBlackout",
+        "Hint": "witch",
+        "HintX": 700,
+        "Particle": "witchEmit",
+        "ItemsToFind": 6,
+        "Items": [
+            [120, 120, "witchHome", "selected", 596, 8, 0.4, 1, false, false, null],
+            [770, 540, "magicBook", "selected", 455, 18, 0.8, 1, false, false, null],
+            [260, 280, "blackCat", "selected", 355, 16, 0.7, 1, false, false, null],
+            [70, 410, "cauldron", "selected", 404.5, 16, 0.6, 1, false, false, null],
+            [320, 450, "witchHat", "selected", 546, 18, 1, 1, false, false, null],
+            [610, 375, "potions", "selected", 512.5, 19.5, 0.21, 0.3, false, true, 6]
+        ]
+    },
+    "Fairy": {
+        "Background": "fairyBackground",
+        "Blackout": "fairyBlackout",
+        "Hint": "fairy",
+        "HintX": 800,
+        "Particle": "fairyEmit",
+        "ItemsToFind": 6,
+        "Items": [
+            [860, 340, "fairyHome", "selected", 454.3, 3, 0.45, 1, false, false, null],
+            [210, 100, "magicCarpet", "selected", 547, 21, 0.7, 1, false, false, null],
+            [420, 550, "pixieDoor", "selected", 415, 18, 0.45, 1, false, false, null],
+            [20, 20, "spell", "selected", 517.3, 21, 0.5, 1, false, false, null],
+            [780, 500, "unicorn", "selected", 588, 4, 0.45, 1, false, false, null],
+            [480, 430, "wand", "selected", 358.4, 18, 0.25, 0.3, false, true, 8]
+        ]
+    }
+}

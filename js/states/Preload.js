@@ -34,6 +34,8 @@ Magic.PreloadState = {
         this.load.spritesheet('wand', 'assets/images/wandSprite.png', 159, 100, 9);
         this.load.spritesheet('fairyEmit', 'assets/images/fairyEmit.png', 12.5, 13, 8);
         this.load.spritesheet('witchEmit', 'assets/images/witchEmit.png', 12.5, 11, 8);
+        
+        this.load.text('magicData', 'assets/data/magicData.json');
     },
     create: function ()
     {

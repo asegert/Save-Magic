@@ -3,6 +3,8 @@ var Magic = Magic || {};
 Magic.StoryState = {
     create: function ()
     {
+        //Set the state -> fairy or witch
+        Magic.SaveState = "Witch";
         this.game.state.start('Game');
     }
 };
