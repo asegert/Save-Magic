@@ -19,6 +19,7 @@ if(Phaser.Device.ie) //Checks that internet explorer is being used
         Magic.game.state.add('Preload', Magic.PreloadState); 
         Magic.game.state.add('Game', Magic.GameState);
         Magic.game.state.add('Story', Magic.StoryState);
+        Magic.game.state.add('End', Magic.EndState);
 
         Magic.game.state.start('Cache'); 
     }
@@ -32,6 +33,7 @@ else
     Magic.game.state.add('Preload', Magic.PreloadState); 
     Magic.game.state.add('Game', Magic.GameState);
     Magic.game.state.add('Story', Magic.StoryState);
+    Magic.game.state.add('End', Magic.EndState);
 
     Magic.game.state.start('Cache');
 }

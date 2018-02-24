@@ -71,7 +71,7 @@ Magic.StoryState = {
                 flyTween.onComplete.add(function()
                 {
                     //Once she had 'flown away' start the game
-                    this.game.state.start('Game');
+                    Magic.StoryState.transitionScreen('Game');
                 }, this);
             }
             //If it is not the ending
@@ -100,7 +100,7 @@ Magic.StoryState = {
                 flyTween.onComplete.add(function()
                 {
                     //Once she had 'flown away' start the game
-                    this.game.state.start('Game');
+                    Magic.StoryState.transitionScreen('Game');
                 }, this);
             }
             //If it is not the ending
@@ -169,6 +169,111 @@ Magic.StoryState = {
             {
                 this.who = "fairy";
                 this.peekaboo(true);
+            }
+        }
+    },
+    transitionScreen: function(state)
+    {
+        //Set for removal
+        if(Magic.displayGroup === undefined || Magic.displayGroup.length < 1)
+        {
+            this.remove = false;
+            Magic.displayGroup = Magic.game.add.group();
+        }
+        else
+        {
+            this.remove = true;
+        }
+        
+        this.currentX = 0;
+        this.minY = 0;
+        this.startX = 0;
+        this.startY = 0;
+        this.maxX = 12;
+        this.maxY = 8;
+        this.up = true;
+        this.nextState = state;
+        
+        this.img = 'witchBubble';
+        if(Magic.SaveState === "Fairy")
+        {
+            this.img = 'fairyDust';
+        }
+        
+        this.displayItem();
+    },
+    displayItem: function()
+    {
+        if(!this.remove)
+        {
+            var dust = this.add.sprite((this.startX * 80), (this.startY * 80), this.img);
+            Magic.displayGroup.add(dust);
+            
+            if(this.startY === this.maxY)
+            {
+                if(this.currentX === this.maxX)
+                {
+                    this.minY++;
+                    this.startX = this.maxX;
+                }
+                this.startY = this.minY;
+            }
+            if(this.startX === this.maxX-1)
+            {
+                if(this.up)
+                {
+                    this.up = !this.up;
+                }
+                else
+                {
+                    this.currentX = this.maxX;
+                }
+            }
+            if(this.startX === this.maxX && this.startY ===this.maxY && !this.up)
+            {
+                this.count = 0;
+                this.remove = true;
+                if(this.nextState != null)
+                {
+                    this.state.start(this.nextState, false, false);
+                }
+            }
+            else if (this.startX > 0)
+            {
+                this.startX--;
+                this.startY++;
+                this.time.events.add(0, this.displayItem, this);
+            }
+            else if(this.startX === 0 || this.startY === 0)
+            {
+                this.currentX++;
+                this.startX = this.currentX;
+                this.startY = this.minY;
+                this.time.events.add(0, this.displayItem, this);
+            }
+            else if(this.currentX === 0)
+            {
+                if(this.up)
+                {
+                    this.currentX = 1;
+                    this.time.events.add(0, this.displayItem, this);
+                }
+            }
+            else
+            {
+                this.time.events.add(0, this.displayItem, this);
+            }
+        }
+        else
+        {
+            if(Magic.displayGroup.length > 1)
+            {
+                Magic.displayGroup.removeChildAt(0);
+                this.time.events.add(1, this.displayItem, this);
+            }
+            else
+            {
+                Magic.displayGroup = undefined;
             }
         }
     }

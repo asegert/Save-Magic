@@ -39,6 +39,12 @@ Magic.GameState = {
             let Item = new Magic.Item(this);
             this.items[this.items.length] = Item.init(data[0], data[1], data[2], eval(data[3]), data[4], data[5], data[6], data[7], data[8], data[9], data[10]);
         }
+        
+        if(Magic.displayGroup != undefined)
+        {
+            this.world.bringToTop(Magic.displayGroup);
+            Magic.StoryState.transitionScreen(null);
+        }
     },
     selected: function(item)
     {
@@ -62,7 +68,7 @@ Magic.GameState = {
         //Check if all items are found and game should end
         if(this.this.itemsFound === this.this.itemsToFind)
         {
-            console.log("end game");
+            Magic.StoryState.transitionScreen('End');
         }
     },
     update: function ()
