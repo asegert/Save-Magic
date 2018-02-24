@@ -172,9 +172,10 @@ Magic.StoryState = {
             }
         }
     },
+    //Transitions between screens with animation
     transitionScreen: function(state)
     {
-        //Set for removal
+        //Checks if there is a group that needs to be removed or if one is being added
         if(Magic.displayGroup === undefined || Magic.displayGroup.length < 1)
         {
             this.remove = false;
@@ -184,7 +185,7 @@ Magic.StoryState = {
         {
             this.remove = true;
         }
-        
+        //Sets the starting values and thresholds for animation creation
         this.currentX = 0;
         this.minY = 0;
         this.startX = 0;
@@ -192,88 +193,117 @@ Magic.StoryState = {
         this.maxX = 12;
         this.maxY = 8;
         this.up = true;
+        //Sets the state that is being transitioned to
         this.nextState = state;
-        
+        //Sets the image based on which game is being played
         this.img = 'witchBubble';
         if(Magic.SaveState === "Fairy")
         {
             this.img = 'fairyDust';
         }
-        
+        //Calls for the animation
         this.displayItem();
     },
     displayItem: function()
     {
+        //If we are not removing items
         if(!this.remove)
         {
+            //Add the new item to the group
             var dust = this.add.sprite((this.startX * 80), (this.startY * 80), this.img);
             Magic.displayGroup.add(dust);
-            
+            //If y has hit the bottom
             if(this.startY === this.maxY)
             {
+                //If up against the edge raise y and reset x
                 if(this.currentX === this.maxX)
                 {
                     this.minY++;
                     this.startX = this.maxX;
                 }
+                //Otherwise reset y to the top
                 this.startY = this.minY;
             }
+            //If x is going to be out of bounds next call
             if(this.startX === this.maxX-1)
             {
+                //If x is currently being increased it has hit the edge and we are now going lower rather than higher
                 if(this.up)
                 {
                     this.up = !this.up;
                 }
+                //Otherwise reset x to its max
                 else
                 {
                     this.currentX = this.maxX;
                 }
             }
+            //If both limits have been hit and it it lowering there is nowhere left to go
             if(this.startX === this.maxX && this.startY ===this.maxY && !this.up)
             {
-                this.count = 0;
+                //Next the items will be removed
                 this.remove = true;
+                //Load the next state so long as a true state was passed
                 if(this.nextState != null)
                 {
                     this.state.start(this.nextState, false, false);
                 }
             }
+            //If x has not hit it's limit
             else if (this.startX > 0)
             {
+                //Lower x down the page, raise y down the pagee and recall this function
                 this.startX--;
                 this.startY++;
                 this.time.events.add(0, this.displayItem, this);
             }
+            //If either x or y are at the top
             else if(this.startX === 0 || this.startY === 0)
             {
+                //Start a new row
                 this.currentX++;
+                //Reset x and y
                 this.startX = this.currentX;
                 this.startY = this.minY;
+                //Recall the function
                 this.time.events.add(0, this.displayItem, this);
             }
+            //x is 0
             else if(this.currentX === 0)
             {
+                //And has not hit the edge
                 if(this.up)
                 {
+                    //Increase the next x
                     this.currentX = 1;
+                    //Recall the function
                     this.time.events.add(0, this.displayItem, this);
                 }
             }
             else
             {
+                //In all other cases recall the function
                 this.time.events.add(0, this.displayItem, this);
             }
         }
+        //If removing
         else
         {
-            if(Magic.displayGroup.length > 1)
+            //If there are still elements to be removed...remove them
+            if(Magic.displayGroup.length > 0)
             {
                 Magic.displayGroup.removeChildAt(0);
                 this.time.events.add(1, this.displayItem, this);
             }
+            //If there are no more items
             else
             {
+                //Reset the group to undefined
                 Magic.displayGroup = undefined;
+                //Restart the state
+                var curr = this.game.state.current;
+                this.world.removeAll();
+                this.state.start(curr);
             }
         }
     }
