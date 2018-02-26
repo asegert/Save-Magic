@@ -4,6 +4,16 @@ Magic.GameState = {
     
     create: function ()
     {
+        //Stops the game from being played if it will still be reloading after transition completes
+        if(Magic.displayGroup != undefined)
+        {
+            this.input.enabled = false;
+        }
+        else
+        {
+            this.input.enabled = true;
+        }
+        
         this.magicData = JSON.parse(this.game.cache.getText('magicData'));
         //Holds the function that will be called by Items, must be stored as a variable as is passed as a variable for improved flexibility
         //A little repetitive, but improves readability

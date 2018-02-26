@@ -1,8 +1,12 @@
 {
     "Witch": {
         "Background": "witchBackground",
+        "EndBackground": "responseWitch",
         "Blackout": "witchBlackout",
         "Hint": "witch",
+        "EndChar": "endWitch",
+        "EndAnim": "storyWitch",
+        "EndText": "endTextWitch",
         "HintX": 700,
         "Particle": "witchEmit",
         "ItemsToFind": 6,
@@ -17,8 +21,12 @@
     },
     "Fairy": {
         "Background": "fairyBackground",
+        "EndBackground": "responseFairy",
         "Blackout": "fairyBlackout",
         "Hint": "fairy",
+        "EndChar": "endFairy",
+        "EndAnim": "storyFairy",
+        "EndText": "endTextFairy",
         "HintX": 800,
         "Particle": "fairyEmit",
         "ItemsToFind": 6,

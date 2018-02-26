@@ -8,10 +8,14 @@ Magic.PreloadState = {
         this.load.setPreloadSprite(preloadProgress);
 
         this.load.image('chooseScreen', 'assets/images/chooseScreen.png');
+        this.load.image('instructions', 'assets/images/instructions.png');
+        this.load.image('main', 'assets/images/main.png');
+        this.load.image('start', 'assets/images/start.png');
         this.load.image('coupon', 'assets/images/saveMagic_coupon.jpg');
         //Witch Version
         this.load.image('witchBackground', 'assets/images/witchBackground.png'); 
         this.load.image('responseWitch', 'assets/images/responseScreenWitch.png'); 
+        this.load.image('endWitch', 'assets/images/endWitch.png'); 
         this.load.image('witch', 'assets/images/witch.png'); 
         this.load.image('witchBlackout', 'assets/images/witchBlackout.png');
         
@@ -21,6 +25,7 @@ Magic.PreloadState = {
         this.load.image('cauldron', 'assets/images/cauldron.png');
         this.load.image('blackCat', 'assets/images/blackCat.png');
         this.load.image('witchBubble', 'assets/images/witchBubble.png');
+        this.load.image('endTextWitch', 'assets/images/endTextWitch.png');
         
         this.load.spritesheet('potions', 'assets/images/potionsSprite.png', 75, 100, 9);
         
@@ -37,6 +42,7 @@ Magic.PreloadState = {
         this.load.image('magicCarpet', 'assets/images/magicCarpet.png');
         this.load.image('unicorn', 'assets/images/unicorn.png');
         this.load.image('fairyDust', 'assets/images/fairyDust.png');
+        this.load.image('endTextFairy', 'assets/images/endTextFairy.png');
         
         this.load.spritesheet('wand', 'assets/images/wandSprite.png', 159, 100, 9);
         this.load.spritesheet('fairyEmit', 'assets/images/fairyEmit.png', 12.5, 13, 8);

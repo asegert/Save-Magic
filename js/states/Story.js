@@ -5,7 +5,6 @@ Magic.StoryState = {
     {
         //Sets the dual Background
         this.background = this.add.sprite(0, 0, 'chooseScreen');
-        this.background.inputEnabled = true;
         //When the background is clicked set ending to true and store the mouse position
         this.background.events.onInputDown.add(function()
         {
@@ -43,7 +42,24 @@ Magic.StoryState = {
         this.poof = null;
         //Set the state -> fairy or witch, witch by default
         Magic.SaveState = "Witch";
-    },
+        //Main Screen for splash screen and instructions
+        this.main = this.add.sprite(0, 0, 'main');
+        //Button switches from splash to instructions and destroys after instructions to reveal choice screen
+        this.start = this.add.button(350, 530, 'start', function()
+        {
+            if(this.main.key != 'instructions')
+            {
+                this.main.loadTexture('instructions');
+            }
+            else
+            {
+                this.main.destroy();
+                this.start.destroy();
+                this.background.inputEnabled = true;
+            }
+        }, this);
+        this.start.scale.setTo(0.5, 0.5);
+;    },
     peekaboo: function(chosen)
     {
         //If poof is storing something stop the tween

@@ -3,7 +3,7 @@ var Magic = Magic || {};
 Magic.EndState = {
     create: function ()
     {
-        this.background = this.add.sprite(0, 0, 'responseFairy');
+        this.background = this.add.sprite(0, 0, Magic.GameState.magicData[Magic.SaveState].EndBackground);
         this.coverSprites = this.add.group();
         
         if(Magic.displayGroup != undefined)
@@ -13,13 +13,14 @@ Magic.EndState = {
         }
         else
         {
-            this.character = this.add.sprite(1000, -50, 'storyFairy');
+            this.endText = this.add.sprite(0, 0, 'endTextWitch');
+            this.character = this.add.sprite(1000, -50, Magic.GameState.magicData[Magic.SaveState].EndAnim);
             this.anim = this.character.animations.add('fly');
             let flyTween = this.add.tween(this.character).to({x: this.world.centerX, y: this.world.centerY - 100}, 2000, "Linear", true);
             flyTween.onComplete.add(function()
             {
                 this.anim.stop();
-                this.character.loadTexture('endFairy');
+                this.character.loadTexture(Magic.GameState.magicData[Magic.SaveState].EndChar);
                 
                 this.couponAnim();
                 this.world.bringToTop(this.coverSprites);
@@ -42,7 +43,7 @@ Magic.EndState = {
         {
             for(let j=300, maxy=(this.coupon.texture.height*0.7)+300; j<=maxy; j=j+13)
             {
-                let cover = this.add.sprite(i, j, 'fairyEmit', 0);
+                let cover = this.add.sprite(i, j, Magic.GameState.magicData[Magic.SaveState].Particle, 0);
                 let coverAnim = cover.animations.add('flash');
                 coverAnim.play(Math.floor(Math.random() * 10) + 1, true);
                 this.coverSprites.add(cover);
