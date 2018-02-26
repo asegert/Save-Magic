@@ -8,8 +8,10 @@ Magic.PreloadState = {
         this.load.setPreloadSprite(preloadProgress);
 
         this.load.image('chooseScreen', 'assets/images/chooseScreen.png');
+        this.load.image('coupon', 'assets/images/saveMagic_coupon.jpg');
         //Witch Version
-        this.load.image('witchBackground', 'assets/images/witchBackground.png');        
+        this.load.image('witchBackground', 'assets/images/witchBackground.png'); 
+        this.load.image('responseWitch', 'assets/images/responseScreenWitch.png'); 
         this.load.image('witch', 'assets/images/witch.png'); 
         this.load.image('witchBlackout', 'assets/images/witchBlackout.png');
         
@@ -23,7 +25,9 @@ Magic.PreloadState = {
         this.load.spritesheet('potions', 'assets/images/potionsSprite.png', 75, 100, 9);
         
         //Fairy Verison
-        this.load.image('fairyBackground', 'assets/images/fairyBackground.png');      
+        this.load.image('fairyBackground', 'assets/images/fairyBackground.png');   
+        this.load.image('responseFairy', 'assets/images/responseScreenFairy.png'); 
+        this.load.image('endFairy', 'assets/images/endFairy.png');  
         this.load.image('fairy', 'assets/images/fairy.png');  
         this.load.image('fairyBlackout', 'assets/images/fairyBlackout.png');
         
