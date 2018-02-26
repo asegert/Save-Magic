@@ -12,6 +12,8 @@ Magic.GameState = {
             Magic.audio.stop();
             Magic.audio = this.add.audio(this.magicData[Magic.SaveState].Audio);
             Magic.audio.play('', 0, 1, true);
+            this.world.bringToTop(Magic.displayGroup);
+            Magic.StoryState.transitionScreen(null);
         }
         else
         {
@@ -41,12 +43,6 @@ Magic.GameState = {
             //Note: data[3] must be evaluated as it is a string that will represent the variable holding the function to be called when the item is selected
             let Item = new Magic.Item(this);
             this.items[this.items.length] = Item.init(data[0], data[1], data[2], eval(data[3]), data[4], data[5], data[6], data[7], data[8], data[9], data[10]);
-        }
-        
-        if(Magic.displayGroup != undefined)
-        {
-            this.world.bringToTop(Magic.displayGroup);
-            Magic.StoryState.transitionScreen(null);
         }
     },
     selected: function(item)
@@ -88,10 +84,6 @@ Magic.GameState = {
                 break;
             }
         }
-    },
-    update: function ()
-    {
-        
     }
 };
 /*Copyright (C) Wayside Co. - All Rights Reserved
