@@ -13,7 +13,7 @@ Magic.EndState = {
         }
         else
         {
-            this.endText = this.add.sprite(0, 0, 'endTextWitch');
+            this.endText = this.add.sprite(0, 0, Magic.GameState.magicData[Magic.SaveState].EndText);
             this.character = this.add.sprite(1000, -50, Magic.GameState.magicData[Magic.SaveState].EndAnim);
             this.anim = this.character.animations.add('fly');
             let flyTween = this.add.tween(this.character).to({x: this.world.centerX, y: this.world.centerY - 100}, 2000, "Linear", true);
@@ -33,7 +33,7 @@ Magic.EndState = {
         this.coupon = this.add.sprite(50, 300, 'coupon');
         this.coupon.scale.setTo(0.7, 0.7);
         this.coupon.alpha = 0;
-        this.revealTween = this.add.tween(this.coupon).to({alpha: 1}, 5000, "Linear", true);
+        this.revealTween = this.add.tween(this.coupon).to({alpha: 1}, 4000, "Linear", true);
         this.revealTween.onComplete.add(function()
         {
             this.coverSprites.removeAll();
@@ -49,5 +49,10 @@ Magic.EndState = {
                 this.coverSprites.add(cover);
             }
         }
+        this.time.events.add(Phaser.Timer.SECOND * 1.5, function()
+        {
+            let wand = this.add.audio('magic');
+            wand.play();
+        }, this);
     }
 }

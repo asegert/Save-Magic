@@ -3,6 +3,8 @@ var Magic = Magic || {};
 Magic.StoryState = {
     create: function ()
     {
+        Magic.audio = this.add.audio('opening');
+        Magic.audio.play('', 0, 1, true);
         //Sets the dual Background
         this.background = this.add.sprite(0, 0, 'chooseScreen');
         //When the background is clicked set ending to true and store the mouse position

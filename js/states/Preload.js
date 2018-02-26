@@ -11,6 +11,7 @@ Magic.PreloadState = {
         this.load.image('instructions', 'assets/images/instructions.png');
         this.load.image('main', 'assets/images/main.png');
         this.load.image('start', 'assets/images/start.png');
+        this.load.image('hint', 'assets/images/hint.png');
         this.load.image('coupon', 'assets/images/saveMagic_coupon.jpg');
         //Witch Version
         this.load.image('witchBackground', 'assets/images/witchBackground.png'); 
@@ -50,7 +51,41 @@ Magic.PreloadState = {
         this.load.spritesheet('storyWitch', 'assets/images/storyWitch.png', 374, 226, 5);
         this.load.spritesheet('storyFairy', 'assets/images/storyFairy.png', 249, 226, 5);
         
+        //Audio
+        this.load.audio('witchBackground', ['assets/audio/witchBackground.mp3', 'assets/audio/witchBackground.m4a', 'assets/audio/witchBackground.ogg']);
+        this.load.audio('fairyBackground', ['assets/audio/fairyBackground.mp3', 'assets/audio/fairyBackground.m4a', 'assets/audio/fairyBackground.ogg']);
+        this.load.audio('opening', ['assets/audio/opening.mp3', 'assets/audio/opening.m4a', 'assets/audio/opening.ogg']);
+        this.load.audio('magic', ['assets/audio/magic.mp3', 'assets/audio/magic.m4a', 'assets/audio/magic.ogg']);
+        
         this.load.text('magicData', 'assets/data/magicData.json');
+        /*
+        JSON:
+        Character State is defined as an object, each object contains:
+        Background: the texture for the 'world' of the character
+        EndBackground: the texture for the final scene
+        Blackout: the texure which has all the objects to find displayed in a box as black images, the ones filled when items are found
+        Hint: the character texture to be used to offer hints
+        EndChar: the character in the final screen that casts the 'reward spell'
+        EndAnim: the spritesheet for the end screen animation
+        EndText: the texture with the text to be displayed at the end
+        Audio: the audio file that should be played during the game
+        HintX: the x coordinate at which the hint texture should be displayed
+        Particle: the spritesheet used for the emitter for the hints
+        ItemsToFind: the number of items the player must find in the scene
+        Items: An array of the items that must be found, each item...
+            Is an array each containing...
+            [0]: the x coordinate of the item
+            [1]: the y coordinate of the item
+            [2]: the item texture
+            [3]: the name of the function to be called when the item is 'clicked'
+            [4]: the x coordinate of where the item goes to line up with itself in the blackout box indicating it has been found
+            [5]: the y coordinate of where the item goes to line up with itself in the blackout box indicating it has been found
+            [6]: the number indicating the scale of the item once it gets to the blackout box indicating it has been found
+            [7]: the scale of the item in the scene
+            [8]: a boolean value indicating if an item has been found -> default false
+            [9]: a boolean indicating whether or not the item has an animation meaning a sprite must be created rather than a button to accomodate the animation
+            [10]: the frame that the animation should stop at (so it fills the blackout box image), use null if no animation
+        */
     },
     create: function ()
     {

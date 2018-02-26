@@ -8,13 +8,17 @@ Magic.GameState = {
         if(Magic.displayGroup != undefined)
         {
             this.input.enabled = false;
+            this.magicData = JSON.parse(this.game.cache.getText('magicData'));
+            Magic.audio.stop();
+            Magic.audio = this.add.audio(this.magicData[Magic.SaveState].Audio);
+            Magic.audio.play('', 0, 1, true);
         }
         else
         {
             this.input.enabled = true;
+            
+            this.magicData = JSON.parse(this.game.cache.getText('magicData'));
         }
-        
-        this.magicData = JSON.parse(this.game.cache.getText('magicData'));
         //Holds the function that will be called by Items, must be stored as a variable as is passed as a variable for improved flexibility
         //A little repetitive, but improves readability
         let selected = function(item){Magic.GameState.selected(item)};
@@ -25,20 +29,9 @@ Magic.GameState = {
         //Witch Version
         this.background=this.add.sprite(0, 0, this.magicData[Magic.SaveState].Background);
         this.blackout = this.add.sprite(350, 0, this.magicData[Magic.SaveState].Blackout);
-        this.hint = this.add.button(this.magicData[Magic.SaveState].HintX, 0, this.magicData[Magic.SaveState].Hint, function()
-        {
-            for(let i=0, len=this.items.length; i<len; i++)
-            {
-                if(!this.items[i].found)
-                {
-                    let emitter = this.add.emitter(this.items[i].item.x + (this.items[i].item.width/2), this.items[i].item.y + (this.items[i].item.height/2), 100);
-                    emitter.makeParticles(this.magicData[Magic.SaveState].Particle, [0, 1, 2, 3, 4, 5, 6, 7]);
-                    emitter.start(true, 2000, null, 50);
-                    
-                    break;
-                }
-            }
-        }, this);
+        //Hint buttons
+        this.hintChar = this.add.button(this.magicData[Magic.SaveState].HintX, 0, this.magicData[Magic.SaveState].Hint, this.hint, this);
+        this.hintSign = this.add.button(this.magicData[Magic.SaveState].HintX + 20, (0.15 * this.magicData[Magic.SaveState].HintX), 'hint', this.hint, this);
         
         //Items
         for(let i = 0, len = this.magicData[Magic.SaveState].Items.length; i<len; i++)
@@ -79,6 +72,21 @@ Magic.GameState = {
         if(this.this.itemsFound === this.this.itemsToFind)
         {
             Magic.StoryState.transitionScreen('End');
+        }
+    },
+    hint: function()
+    {
+        //Finds the next unfound item and plays an emitter over it for a brief time    
+        for(let i=0, len=this.items.length; i<len; i++)
+        {
+            if(!this.items[i].found)
+            {
+                let emitter = this.add.emitter(this.items[i].item.x + (this.items[i].item.width/2), this.items[i].item.y + (this.items[i].item.height/2), 100);
+                emitter.makeParticles(this.magicData[Magic.SaveState].Particle, [0, 1, 2, 3, 4, 5, 6, 7]);
+                emitter.start(true, 2000, null, 50);
+                //Once one item is 'hinted' no more need to be found    
+                break;
+            }
         }
     },
     update: function ()
